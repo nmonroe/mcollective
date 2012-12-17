@@ -1,1 +1,11 @@
 My mcollective plugins
+
+
+
+hg
+
+mco hg [OPTIONS] [FILTERS] <ACTION> [REPO]
+
+The ACTION can be one of the following:
+    update -- Does a hg pull / hg update of specified repository
+    status -- Does hg status and hg incoming on repository and returns the results
