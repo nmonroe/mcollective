@@ -8,10 +8,17 @@ module MCollective
                 if File.exists?(r) && File.directory?(r)
                     sout = ""
                     serr = ""
-                    st = run("#{hgbin} outgoing -R #{r}", :stdout => sout, :stderr => serr, :chomp=> true)
-                    if st == 0
+                    st = run("#{hgbin} status -R #{r} | /usr/bin/wc -l", :stdout => sout, :stderr => serr, :chomp=> true)
+                    if st != 0
                         reply[:msg] = "Failed: #{r} has uncommited change(s)."
                         reply.fail! "Failed: #{r} has uncommited change(s).", 1
+                    end
+                    oout = ""
+                    oerr = ""
+                    out = run("#{hgbin} outgoing -R #{r}", :stdout => oout, :stderr => oerr, :chomp=> true)
+                    if out == 0
+                        reply[:msg] = "Failed: #{r} has committed & unpushed change(s)."
+                        reply.fail! "Failed: #{r} has committed & unpushed change(s).", 1
                     end
                     pout = ""
                     perr = ""
