@@ -51,9 +51,15 @@ module MCollective
                     serr = ""
                     st = run("#{hgbin} status -R #{r}", :stdout => sout, :stderr => serr, :chomp=> true)
                     if st == 0
-                        message << "No Local Changes."
+                        message << "No Uncommited Local Changes."
                     else
-                        message << "Local Changes Exist."
+                        message << "Uncommited Local Changes Exist."
+                    end
+                    oout = ""
+                    oerr = ""
+                    out = run("#{hgbin} outgoing -R #{r}", :stdout => oout, :stderr => oerr, :chomp=> true)
+                    if out == 0
+                        message << " Committed & unpushed change(s) exist."
                     end
                     iout = ""
                     ierr =""
