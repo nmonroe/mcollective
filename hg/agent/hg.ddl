@@ -1,9 +1,9 @@
 metadata    :name        => "hg",
             :description => "hg service for MCollective",
             :author      => "Nick Monroe",
-            :license     => "Internal Use",
+            :license     => "GPL v2",
             :version     => "1.0",
-            :url         => "http://www.trailersplus.com",
+            :url         => "https://github.com/nmonroe",
             :timeout     => 120
 
 
